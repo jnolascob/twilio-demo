@@ -1,3 +1,25 @@
+## Levantar la aplicación
+
+```yarn start:dev```
+
+### Probar los endpoints:
+
+*Subir archivo al servidor*
+```
+http://localhost:4000/file/upload
+
+Enviar form-data
+file
+```
+
+*Subir archivo al digitalocean space*
+```
+http://localhost:4000/file/upload-space
+
+Enviar form-data
+file
+```
+
 ## Bolierplate para API en NodeJS usando Express
 
 Este repositorio tiene como finalidad brindar al desarrollador una estructura base ya configurada para que pueda abordar un nuevo proyecto y evitar los primeros pasos de la creación de un proyecto que tienden a ser repetitivos.
