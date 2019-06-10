@@ -1,9 +1,12 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 
 const app = express();
 
-app.get('/', (req, res) => {
-  res.send('Welcome to Node Express Boilerplate API');
-});
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+require('./config/routes')(app);
+// require('./config/express')(app);
 
 module.exports = app;

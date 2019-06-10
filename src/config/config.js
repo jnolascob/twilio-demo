@@ -29,6 +29,11 @@ const config = {
     password: process.env.DB_PASSWORD || '',
     debugMode: process.env.DB_DEBUG_MODE || false,
   },
+  space: {
+    accessKey: process.env.DO_ACCESS_KEY || '',
+    secretKey: process.env.DO_SECRET_KEY || '',
+    endpoint: process.env.DO_SPACE_ENDPOINT || '',
+  },
 };
 
 // export default config;
