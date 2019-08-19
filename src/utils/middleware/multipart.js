@@ -24,6 +24,7 @@ const s3 = new aws.S3({
   accessKeyId: space.accessKey,
   secretAccessKey: space.secretKey,
 });
+
 const storageS3 = multerS3({
   s3,
   bucket: 'doapps-server-storage',
@@ -36,7 +37,30 @@ const storageS3 = multerS3({
 
 const uploadToSpace = multer({ storage: storageS3 }).array('file', 1);
 
+// Save file in amazon space
+const amazonS3 = new aws.S3({
+  accessKeyId: config.aws.accessKey,
+  secretAccessKey: config.aws.secretAccessKey,
+});
+
+const storageAmazonS3 = multerS3({
+  s3: amazonS3,
+  bucket: config.aws.bucket,
+  acl: 'public-read',
+  contentType: multerS3.AUTO_CONTENT_TYPE,
+  key: (req, file, cb) => {
+    if (file) {
+      console.log(file);
+      const format = file.originalname.split('.');
+      cb(null, `${file.fieldname}-${Date.now()}.${format[format.length - 1]}`);
+    }
+  },
+});
+
+const uploadToAmazon = multer({ storage: storageAmazonS3 }).array('file', 1);
+
 module.exports = {
   uploadToServer,
   uploadToSpace,
+  uploadToAmazon,
 };

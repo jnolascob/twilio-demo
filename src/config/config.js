@@ -34,6 +34,11 @@ const config = {
     secretKey: process.env.DO_SECRET_KEY || '',
     endpoint: process.env.DO_SPACE_ENDPOINT || '',
   },
+  aws: {
+    accessKey: process.env.AWS_ACCESS_KEY || '',
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY || '',
+    bucket: process.env.AWS_BUCKET || '',
+  },
 };
 
 // export default config;
