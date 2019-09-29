@@ -1,6 +1,7 @@
 const aws = require('aws-sdk');
 const multer = require('multer');
 const multerS3 = require('multer-s3');
+const path = require('path');
 const config = require('../../config/config');
 
 const { space } = config;
@@ -11,7 +12,8 @@ const storage = multer.diskStorage({
     cb(null, 'uploads');
   },
   filename: (req, file, cb) => {
-    cb(null, `${file.fieldname}-${Date.now()}.png`);
+    const extension = path.extname(file.originalname);
+    cb(null, `${file.fieldname}-${Date.now()}${extension}`);
   },
 });
 
@@ -37,7 +39,7 @@ const storageS3 = multerS3({
 
 const uploadToSpace = multer({ storage: storageS3 }).array('file', 1);
 
-// Save file in amazon space
+// Save file in amazon s3
 const amazonS3 = new aws.S3({
   accessKeyId: config.aws.accessKey,
   secretAccessKey: config.aws.secretAccessKey,
@@ -50,9 +52,8 @@ const storageAmazonS3 = multerS3({
   contentType: multerS3.AUTO_CONTENT_TYPE,
   key: (req, file, cb) => {
     if (file) {
-      console.log(file);
-      const format = file.originalname.split('.');
-      cb(null, `${file.fieldname}-${Date.now()}.${format[format.length - 1]}`);
+      const extension = path.extname(file.originalname);
+      cb(null, `${file.fieldname}-${Date.now()}${extension}`);
     }
   },
 });
