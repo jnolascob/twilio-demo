@@ -38,7 +38,8 @@ function sendMedia(req, res) {
 
 function sendAnswer(req, res) {
   const { body } = req;
-  console.log('-> Receive message:', body);
+  console.log('-> Body recibido:', body);
+  console.log('-> Recibido:', body.Body);
   const goodBoyUrl = 'https://images.unsplash.com/photo-1518717758536-85ae29035b6d?'
     + 'ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80';
   let message;
