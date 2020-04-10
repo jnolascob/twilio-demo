@@ -43,7 +43,7 @@ function sendAnswer(req, res) {
   let message;
 
   if (body.NumMedia > 0) {
-    message = new MessagingResponse().message("Thanks for the image! Here's one for youu!");
+    message = new MessagingResponse().message('Luchito veo que perdiste, GIL');
     message.media(goodBoyUrl);
   } else {
     message = new MessagingResponse().message('Send us an image!');
