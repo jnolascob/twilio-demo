@@ -56,13 +56,14 @@ function sendAnswer(req, res) {
 }
 
 function listenStatus(req, res) {
+  const payload = req.body;
   let to = req.body.to;
   let fromNumber = req.body.from;
   let callStatus = req.body.CallStatus;
   let callSid = req.body.callSid;
 
-  console.log('==> LISTEN...');
-  console.log(to, fromNumber, callStatus, callSid);
+  console.log('==> LISTEN...', payload);
+  // console.log(to, fromNumber, callStatus, callSid);
   res.send('Event received');
 }
 
